@@ -1,0 +1,46 @@
+#include<iostream>
+#include<time.h>
+#include<vector>
+#include<math.h>
+#include<list>
+using namespace std;
+
+class TimeCalculate{
+public:
+        void calculate(vector<int>&, list<int>&, int);
+        void arr_cal(vector<int>&, int);
+        void list_cal(list<int>&, int);
+};
+
+void TimeCalculate::calculate(vector<int>& my_arr, list<int>& my_list, int limit){
+        int value= pow(2, limit);
+        srand(time(NULL));
+        this->arr_cal(my_arr, value);
+        this->list_cal(my_list, value);
+}
+
+void TimeCalculate::arr_cal(vector<int>& my_arr, int limit){
+        clock_t start, end;
+        start= clock();
+        for(int i= 0; i< limit; i++){
+                my_arr.push_back(rand()%10);
+        }
+        end= clock();
+        cout<< "Dynamic_array costs "<<(end- start)/1000<< "ms"<< endl;
+}
+void TimeCalculate::list_cal(list<int>& my_list, int limit){
+        clock_t start, end;
+        start= clock();
+        for(int i= 0; i< limit; i++){
+                my_list.push_back(rand()%10);
+        }
+        end= clock();
+        cout<< "Linked_list costs "<<(end- start)/1000<< "ms"<< endl;
+}
+
+int main(){
+        vector<int> arr;
+        list<int> list;
+        TimeCalculate a;
+        a.calculate(arr, list, 25);
+}
