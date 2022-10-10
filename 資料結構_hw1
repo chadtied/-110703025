@@ -10,6 +10,7 @@ public:
         void calculate(vector<int>&, list<int>&, int);
         void arr_cal(vector<int>&, int);
         void list_cal(list<int>&, int);
+        void Sum_cal(vector<int>&, list<int>&);
 };
 
 void TimeCalculate::calculate(vector<int>& my_arr, list<int>& my_list, int limit){
@@ -17,6 +18,7 @@ void TimeCalculate::calculate(vector<int>& my_arr, list<int>& my_list, int limit
         srand(time(NULL));
         this->arr_cal(my_arr, value);
         this->list_cal(my_list, value);
+        this->Sum_cal(my_arr, my_list);
 }
 
 void TimeCalculate::arr_cal(vector<int>& my_arr, int limit){
@@ -36,6 +38,23 @@ void TimeCalculate::list_cal(list<int>& my_list, int limit){
         }
         end= clock();
         cout<< "Linked_list costs "<<(end- start)/1000<< "ms"<< endl;
+}
+void TimeCalculate::Sum_cal(vector<int>& my_arr, list<int>& my_list){
+        int arr_sum= 0, list_sum= 0;
+        clock_t start, end;
+        start= clock();
+        for(int i= 0; i< my_arr.size(); i++){
+                arr_sum+= my_arr[i];
+        }
+        end= clock();
+        cout<< "Dynamic_array costs"<< (end- start)/1000<< "ms"<< endl;
+        start= clock();
+        for(list<int>::iterator it= my_list.begin(); it!= my_list.end(); it++){
+                list_sum+= *it;
+        }
+        end= clock();
+        cout<< "Linked_list costs"<< (end- start)/1000<< "ms"<< endl;
+        start= clock();
 }
 
 int main(){
