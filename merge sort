@@ -1,0 +1,56 @@
+#include<iostream>
+#include<vector>
+#include<cmath>
+#include<time.h>
+
+const int Max= 10000;
+
+void Merge(std::vector<int> &Array, int front, int mid, int end){
+         std::vector<int> LeftSub(Array.begin()+front, Array.begin()+mid+1),RightSub(Array.begin()+mid+1, Array.begin()+end+1);
+
+         LeftSub.insert(LeftSub.end(), Max);
+         RightSub.insert(RightSub.end(), Max);
+
+         int idxLeft = 0, idxRight = 0;
+
+         for(int i= front; i<= end; i++){
+                if (LeftSub[idxLeft] <= RightSub[idxRight] ){
+                        Array[i] = LeftSub[idxLeft];
+                        idxLeft++;
+                }
+                else{
+                 Array[i]= RightSub[idxRight];
+                 idxRight++;
+                }
+         }
+}
+void MergeSort(std::vector<int> &array, int front, int end){
+        if (front < end) {
+                int mid = (front+end)/2;
+                MergeSort(array, front, mid);
+                MergeSort(array, mid+1, end);
+                Merge(array, front, mid, end);
+        }
+}
+int main(){
+        clock_t start, end;
+        srand(time(NULL));
+        int power, time;
+        std::cin>> power>> time;
+        int len=pow(2,power), tmp;
+        double sum= 0;
+        std::vector<int> arr;
+        for(int k= 0; k< time; k++){
+                for(int i= 0; i< len; i++){
+                        do{
+                                tmp= rand()%1001;
+                        }while(tmp== 0);
+                        arr.push_back(tmp);
+                }
+                start= clock();
+                MergeSort(arr, 0, len-1);
+                end= clock();
+                sum= sum+ (end-start)/1000;
+        }
+        std::cout<< "It costs "<< sum/time<< "ms"<< std::endl;
+}
