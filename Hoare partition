@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int partition(int arr[], int low, int high){
+        int pivot = arr[low];
+        int i = low - 1, j = high + 1;
+        while (true) {
+                do {
+                        i++;
+                }while(arr[i]< pivot);
+
+                do{
+                        j--;
+                }while(arr[j]> pivot);
+
+                if(i>= j)
+                        return j;
+
+                swap(arr[i], arr[j]);
+        }
+
+}
+
+void quickSort(int arr[], int low, int high){
+        if (low < high){
+                int pi = partition(arr, low, high);
+
+                quickSort(arr, low, pi);
+                quickSort(arr, pi + 1, high);
+        }
+}
+void printArr(int arr[], int size){
+        for(int i= 0; i< size; i++){
+                cout<< arr[i]<< " ";
+        }
+        cout<< endl;
+}
+int main(){
+        srand(time(NULL));
+        int power, time;
+        double sum= 0;
+        clock_t start, end;
+        std::cin>> power>> time;
+        int len=pow(2,power), tmp;
+        int arr[len];
+        for(int k= 0; k< time; k++){
+                for(int i= 0; i< len; i++){
+                        do{
+                                tmp= rand()%1001;
+                        }while(tmp== 0);
+                        arr[i]= tmp;
+                }
+                start= clock();
+                quickSort(arr, 0, len-1);
+                end= clock();
+                sum= sum+ (end-start)/1000;
+        }
+        std::cout<< "It costs "<< sum/time<< "ms"<< std::endl;
+}
