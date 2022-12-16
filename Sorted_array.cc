@@ -44,6 +44,7 @@ int main(){
         num= pow(2,num);
 
         start= clock();
+        //insert 2^n data
         for(int i= 0; i< num; i++){
                 insert(arr, rand()%100000000);
         }
@@ -51,6 +52,7 @@ int main(){
         cout<< "insertion costs "<< (end- start)/1000<< "sec"<< endl;
 
         start= clock();
+        //search 100000data
         for(int i= 0; i< 100000; i++){
                 search(arr, 0, arr.size(), rand()%100000000);
         }
