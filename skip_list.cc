@@ -1,3 +1,4 @@
+//引用程式網址:https://www.geeksforgeeks.org/skip-list-set-2-insertion/
 #include <bits/stdc++.h>
 #include<cmath>
 #include<ctime>
