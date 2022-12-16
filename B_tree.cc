@@ -1,3 +1,5 @@
+//引用程式網址:https://www.geeksforgeeks.org/insertion-in-a-b-tree/ 
+
 #include <bits/stdc++.h>
 #include<ctime>
 #include<cmath>
