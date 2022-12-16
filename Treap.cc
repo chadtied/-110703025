@@ -1,3 +1,5 @@
+//引用程式網址:https://www.geeksforgeeks.org/implementation-of-search-insert-and-delete-in-treap/
+
 #include <bits/stdc++.h>
 #include<ctime>
 #include<cmath>
