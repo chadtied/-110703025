@@ -1,3 +1,5 @@
+//採用c++函式庫內unordered_map實作hash_table
+
 #include<iostream>
 #include<unordered_map>
 #include<cmath>
