@@ -5,7 +5,7 @@
 
 using namespace std;
 
-//if a data is input , use the concept of insertion sort to insert it to the correct order
+//輸入input值進入arr of sorted array
 void InputArr(vector<int>& arr1, vector<int>& arr2, int input){
         int flag1= 0, flag2= 0;
 
@@ -21,6 +21,7 @@ void InputArr(vector<int>& arr1, vector<int>& arr2, int input){
         }
 }
 
+//合併同樣大小的arr1 arr2，並push至下一層arr
 void merge(vector<int>& target, vector<int>& arr1, vector<int>& arr2){
         int ptr1= 0, ptr2= 0, len= target.size();
 
@@ -40,6 +41,7 @@ void merge(vector<int>& target, vector<int>& arr1, vector<int>& arr2){
         }
 }
 
+//迴圈檢查arr1和arr2是否都已滿，如果是則merge
 void SortArr(vector<int> arr1[], vector<int> arr2[], int key){
         if(key== 27)
                 return;
@@ -53,6 +55,7 @@ void SortArr(vector<int> arr1[], vector<int> arr2[], int key){
         SortArr(arr1, arr2, key+1);
 }
 
+//利用二分搜尋，找尋陣列中符合target的值
 void binary_search(vector<int>& arr, int first, int last, int target){
         int mid= (first+last)/2;
         if(arr[mid]== target){
@@ -66,6 +69,7 @@ void binary_search(vector<int>& arr, int first, int last, int target){
                 binary_search(arr, first, mid, target);
 }
 
+//搜索每層陣列，如果不為空則搜尋target值
 void Search(vector<int> arr[], int key, int target){
         if(arr[key][0]== -1)
                 Search(arr, key+1, target);
@@ -75,15 +79,16 @@ void Search(vector<int> arr[], int key, int target){
 
 
 
-//use binary_search to find the data
 
 int main(){
         srand(time(NULL));
+        //arr1[i] 為每層的陣列，arr2為其複製陣列
         vector<int> arr1[30], arr2[30];
         int num, input;
         double start, end;
         cin>> num;
         num= pow(2, num);
+        //建立空間，將-1是為沒有值的預設
         for(int i= 0; i< 27; i++){
                 for(int k= 0; k< pow(2, i); k++){
                         arr1[i].push_back(-1);
@@ -94,7 +99,9 @@ int main(){
         start= clock();
         for(int i= 0; i< num; i++){
                 input= rand()%1000000;
+            
                 InputArr(arr1[0], arr2[0], input);
+                //每輸入完則檢查每個sorted array是否有滿
                 SortArr(arr1, arr2, 0);
         }
         end= clock();
